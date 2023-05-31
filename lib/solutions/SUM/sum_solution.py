@@ -1,7 +1,8 @@
 # noinspection PyShadowingBuiltins,PyUnusedLocal
-def sum(x: int, y: int) -> int:
+def compute(x: int, y: int) -> int:
     if 0 <= x <= 100 and 0 <= y <= 100:
         return x + y
 
 
-sum(1, 2)
+
+
