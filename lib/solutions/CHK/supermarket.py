@@ -1,16 +1,18 @@
 class SupermarketCheckout:
     def __int__(self):
         self.pricing_table = {
-            "A": 50,
-            "B": 30,
-            "C": 20,
-            "D": 15
+
 
         }
         self.special_offers = {
-            "A": (3, 130),
-            "B": (2, 45)
+
         }
+
+    def set_price(self, item, price):
+        self.pricing_table[item] = price
+
+    def set_special_offer(self, item, quantity, offer_price):
+        self.special_offers[item] = (quantity, offer_price)
 
     def checkout(self, basket):
         item_counts = {}
@@ -39,5 +41,6 @@ class SupermarketCheckout:
                 remaining_items = count % quantity
                 return offer_multiplier * offer_price + remaining_items
         return count * self.pricing_table[item]
+
 
 

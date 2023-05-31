@@ -7,6 +7,15 @@ from lib.solutions.CHK.supermarket import SupermarketCheckout
 # skus = unicode string
 def checkout(skus) -> int:
     supercheckout = SupermarketCheckout()
+    supercheckout.set_price('A', 50)
+    supercheckout.set_price('B', 30)
+    supercheckout.set_price('C', 20)
+    supercheckout.set_price('D', 15)
+    supercheckout.set_special_offer('A', 3, 130)
+    supercheckout.set_special_offer('B', 2, 45)
+
+    if not skus:
+        return -1
 
     total_price = 0
     items = skus.split(",")
@@ -26,6 +35,7 @@ def checkout(skus) -> int:
             break
         total_price += price
     return total_price
+
 
 
 
