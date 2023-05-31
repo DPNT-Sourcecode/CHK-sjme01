@@ -5,7 +5,7 @@ from lib.solutions.CHK.supermarket import SupermarketCheckout
 
 # noinspection PyUnusedLocal
 # skus = unicode string
-def checkout(skus):
+def checkout(skus) -> int:
     supercheckout = SupermarketCheckout()
 
     total_price = 0
@@ -22,3 +22,4 @@ def checkout(skus):
             break
         total_price += price
     return total_price
+
