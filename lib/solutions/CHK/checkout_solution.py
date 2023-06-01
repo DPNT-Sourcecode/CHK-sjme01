@@ -21,7 +21,7 @@ def calculate_item_price(item, count):
             if offer_price.isalpha():
                 free_item = offer_price
                 return pricing_table[item] * count + pricing_table[free_item]
-            if count > quantity:
+            elif count > quantity:
                 offer_multiplier = count // quantity
                 remaining_items = count % quantity
                 return offer_multiplier * offer_price + remaining_items * pricing_table[item]
@@ -73,4 +73,5 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
