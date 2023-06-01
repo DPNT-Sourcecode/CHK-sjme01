@@ -1,93 +1,38 @@
-# class SupermarketCheckout:
-#     def __int__(self):
-#         self.pricing_table = {
-#             "A": 50,
-#             'B': 30,
-#             'C': 20,
-#             'D': 15
-#
-#         }
-#         self.special_offers = {
-#             'A': (3, 150),
-#             'B': (2, 45)
-#         }
-#
-#     def set_price(self, item, price):
-#         self.pricing_table[item] = price
-#
-#     def set_special_offer(self, item, quantity, offer_price):
-#         self.special_offers[item] = (quantity, offer_price)
-#
-#     def checkout(self, basket):
-#         item_counts = {}
-#         total_price = 0
-#
-#         for item in basket:
-#             if item not in self.pricing_table:
-#                 return -1
-#
-#             if item in item_counts:
-#                 item_counts[item] += 1
-#             else:
-#                 item_counts[item] = 1
-#
-#         for item, count in item_counts.items():
-#             price = self.calculate_item_price(item, count)
-#             if price == -1:
-#                 return -1
-#             total_price += price
-#
-#     def calculate_item_price(self, item, count):
-#         if item in self.special_offers:
-#             quantity, offer_price = self.special_offers[item]
-#             if count >= quantity:
-#                 offer_multiplier = count // quantity
-#                 remaining_items = count % quantity
-#                 return offer_multiplier * offer_price + remaining_items
-#
-#         return count * self.pricing_table[item]
-
-
 def calculate_item_price(item, count):
     pricing_table = {
         "A": 50,
         'B': 30,
         'C': 20,
-        'D': 15
+        'D': 15,
+        'E': 40
 
     }
 
     special_offers = {
-        'A': (3, 130),
-        'B': (2, 45)
+        'A': [(3, 130), (5, 200)],
+        'B': [(2, 45)],
+        'E': [(2, 'B')]
     }
+    price = 0
     if item not in special_offers and item not in pricing_table:
         return -1
     if item in special_offers:
-        quantity, offer_price = special_offers[item]
-        if count > quantity:
-            offer_multiplier = count // quantity
-            remaining_items = count % quantity
-            return offer_multiplier * offer_price + remaining_items * pricing_table[item]
-        elif count == quantity:
-            return offer_price
+        for quantity, offer_price in special_offers[item]:
+            if offer_price.isalpha():
+                free_item = offer_price
+                return pricing_table[item] * count + pricing_table[free_item]
+            if count > quantity:
+                offer_multiplier = count // quantity
+                remaining_items = count % quantity
+                return offer_multiplier * offer_price + remaining_items * pricing_table[item]
+            elif count == quantity:
+                return offer_price
     return count * pricing_table[item]
-
-
-calculate_item_price("A", 3)
 
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus) -> int:
-    # supercheckout = SupermarketCheckout()
-    # supercheckout.set_price('A', 50)
-    # supercheckout.set_price('B', 30)
-    # supercheckout.set_price('C', 20)
-    # supercheckout.set_price('D', 15)
-    # supercheckout.set_special_offer('A', 3, 130)
-    # supercheckout.set_special_offer('B', 2, 45)
-
     total_price = 0
 
     if len(skus) == 0:
@@ -119,36 +64,6 @@ def checkout(skus) -> int:
             item_name = "D"
             price = calculate_item_price(item_name, item_count)
             total_price += price
-
-        # store = ""
-        # for char in skus:
-        #     if char != store:
-        #         item_count = skus.count(char)
-        #         item_name = char
-        #         price = calculate_item_price(item_name, item_count)
-        #         total_price += price
-        #         store = char
-
-
-
-
-
-
-        # for item in items:
-        #     if len(item) > 1:
-        #         item = item.strip()
-        #         item_name = item[-1]
-        #         item_count = int(item[:-1])
-        #     else:
-        #         item_name = item
-        #         item_count = 1
-        #
-        #     price = calculate_item_price(item_name, item_count)
-        #
-        #     if price == -1:
-        #         print("Invalid input")
-        #         break
-        #     total_price += price
     elif len(skus) == 1:
         item_name = skus
         item_count = 1
@@ -158,3 +73,4 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
