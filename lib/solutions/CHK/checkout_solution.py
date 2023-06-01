@@ -85,7 +85,10 @@ def checkout(skus) -> int:
     if len(skus) > 1 and skus.isupper():
 
         items = set(skus)
-         if len(items)== 2 and :
+        if len(items)== 2 and items.issuperset("E", "B"):
+            for item in items:
+                if items == 
+
 
         for item in items:
             item_count = skus.count(item)
@@ -99,3 +102,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
