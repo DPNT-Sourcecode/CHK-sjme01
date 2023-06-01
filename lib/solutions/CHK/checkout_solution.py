@@ -1,10 +1,17 @@
-import string
-
 
 class SupermarketCheckout:
     def __int__(self):
-        self.pricing_table = {}
-        self.special_offers = {}
+        self.pricing_table = {
+            'A': 50,
+            'B': 30,
+            'C': 20,
+            'D': 15
+
+        }
+        self.special_offers = {
+            'A': (3, 150),
+            'B': (2, 45)
+        }
 
     def set_price(self, item, price):
         self.pricing_table[item] = price
@@ -45,12 +52,12 @@ class SupermarketCheckout:
 # skus = unicode string
 def checkout(skus) -> int:
     supercheckout = SupermarketCheckout()
-    supercheckout.set_price('A', 50)
-    supercheckout.set_price('B', 30)
-    supercheckout.set_price('C', 20)
-    supercheckout.set_price('D', 15)
-    supercheckout.set_special_offer('A', 3, 130)
-    supercheckout.set_special_offer('B', 2, 45)
+    # supercheckout.set_price('A', 50)
+    # supercheckout.set_price('B', 30)
+    # supercheckout.set_price('C', 20)
+    # supercheckout.set_price('D', 15)
+    # supercheckout.set_special_offer('A', 3, 130)
+    # supercheckout.set_special_offer('B', 2, 45)
 
     if len(skus) == 0:
         return -1
@@ -73,4 +80,5 @@ def checkout(skus) -> int:
             break
         total_price += price
     return total_price
+
 
