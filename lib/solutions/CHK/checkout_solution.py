@@ -5,13 +5,37 @@ def calculate_item_price(item, count):
         'C': 20,
         'D': 15,
         'E': 40,
-        'F': 10
-
+        'F': 10,
+        'G': 20,
+        'H': 10,
+        'I': 35,
+        'J': 60,
+        'K': 80,
+        'L': 90,
+        'M': 15,
+        'N': 40,
+        'O': 10,
+        'P': 50,
+        'Q': 30,
+        'R': 50,
+        'S': 30,
+        'T': 20,
+        'U': 40,
+        'V': 50,
+        'W': 20,
+        'X': 90,
+        'Y': 10,
+        'Z': 50
     }
 
     special_offers = {
         'A': [(3, 130), (5, 200)],
         'B': [(2, 45)],
+        'H': [(5, 45), (10, 80)],
+        'K': [(2, 150)],
+        'P': [(5, 200)],
+        'Q': [(3, 80)],
+        'V': [(2, 90), (3, 130)]
 
     }
     price = 0
@@ -51,9 +75,7 @@ def calculate_item_price(item, count):
 
     if item in special_offers:
         for quantity, offer_price in special_offers[item]:
-            # if item == "E" and offer_price.isalpha():
-            #     free_item = offer_price
-            #     return pricing_table[item] * count + pricing_table[free_item]
+           
             if count > quantity:
                 offer_multiplier = count // quantity
                 remaining_items = count % quantity
@@ -72,7 +94,7 @@ def checkout(skus) -> int:
     if len(skus) == 0:
         return 0
 
-    if len(skus) == 1 and  not  "A" <= skus <:
+    if len(skus) == 1 and not "A" <= skus <= "Z":
         return -1
 
     if len(skus) > 1 and skus.isupper():
@@ -100,4 +122,5 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
