@@ -49,7 +49,6 @@
 
 
 def calculate_item_price(item, count):
-    item = item.upper()
     pricing_table = {
         "A": 50,
         'B': 30,
@@ -87,10 +86,10 @@ def checkout(skus) -> int:
 
     total_price = 0
 
-    if len(skus) == 0 or not skus.isalpha():
-        return -1
+    if len(skus) == 0:
+        return 0
 
-    if len(skus) > 1:
+    if len(skus) > 1 and skus.isupper():
         items = [item for item in skus if item.isalpha()]
         for item in items:
             if len(item) > 1:
@@ -107,10 +106,13 @@ def checkout(skus) -> int:
                 print("Invalid input")
                 break
             total_price += price
-    else:
+    elif len(skus) == 1:
         item_name = skus
         item_count = 1
         price = calculate_item_price(item_name, item_count)
         total_price += price
+    else:
+        return -1
 
     return total_price
+
