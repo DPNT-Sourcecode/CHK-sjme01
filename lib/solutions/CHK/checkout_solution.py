@@ -74,21 +74,30 @@ def calculate_item_price(item, count):
                 return offer_multiplier * 130 + remaining_items * pricing_table[item]
 
     if item in special_offers:
-        for quantity, offer_price in special_offers[item]:
-            low = special_offers[item][0][0]
-            high= special_offers[item][1][0]
-
-            if count == low:
-                return special_offers[item][]
-
-
-            if count > quantity:
-                offer_multiplier = count // quantity
-                remaining_items = count % quantity
-                return offer_multiplier * offer_price + remaining_items * pricing_table[item]
-            elif count == quantity:
-                return offer_price
-
+        low = special_offers[item][0][0]
+        high = special_offers[item][1][0]
+        low_price = special_offers[item][0][1]
+        high_price = special_offers[item][1][1]
+        if count == low:
+            return low_price
+        elif count == high:
+            return high_price
+        elif low < count < high:
+            offer_multiplier = count // low
+            remaining_items = count % low
+            return offer_multiplier * low_price + remaining_items * pricing_table[item]
+        elif count > high:
+            offer_multiplier = count // high
+            remaining_items = count % high
+            if remaining_items < low:
+                return offer_multiplier * high_price + remaining_items * pricing_table[item]
+            elif remaining_items == low:
+                return offer_multiplier * high_price + low_price
+            elif low < remaining_items < high:
+                offer_multiplier2 = remaining_items // low
+                remaining_items2 = remaining_items % low
+                return offer_multiplier * high_price + offer_multiplier2 * low_price + remaining_items2 * pricing_table[
+                    item]
     return count * pricing_table[item]
 
 
@@ -128,4 +137,5 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
