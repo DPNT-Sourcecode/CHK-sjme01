@@ -76,6 +76,17 @@ def calculate_item_price(item, count):
                 return offer_multiplier * 130 + remaining_items * pricing_table[item]
 
     if item in special_offers:
+        if len(special_offers[item]) == 1:
+            low_price = special_offers[item][0][1]
+            low = special_offers[item][0][0]
+            if count == low:
+                return low_price
+            elif count > low:
+                offer_multiplier = count // low
+                remaining_items = count % low
+                return offer_multiplier * low_price + remaining_items * pricing_table[item]
+            else:
+                return count * pricing_table[item]
         low = special_offers[item][0][0]
         high = special_offers[item][1][0]
         low_price = special_offers[item][0][1]
@@ -139,3 +150,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
