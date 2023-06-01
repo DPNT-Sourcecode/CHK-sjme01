@@ -85,7 +85,7 @@ def checkout(skus) -> int:
 
     total_price = 0
 
-    if len(skus) == 0:
+    if len(skus) == 0 or not skus.isalpha():
         return -1
 
     if len(skus) > 1:
@@ -112,5 +112,6 @@ def checkout(skus) -> int:
         total_price += 1
 
     return total_price
+
 
 
