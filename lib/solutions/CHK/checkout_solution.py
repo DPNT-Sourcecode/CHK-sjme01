@@ -79,8 +79,8 @@ def checkout(skus) -> int:
         items = set(skus)
         for item in items:
             item_count = skus.count(item)
-            if item == "E" and item_count in [2, 4]:
-                discount = 30 if item_count == 2 else 45
+            if item == "E" and item_count in [2,3, 4] and len(skus) > 2:
+                discount = 30 if item_count == 2 and item_count == 3 else 45
                 price = calculate_item_price(item, item_count) - discount
             else:
                 price = calculate_item_price(item, item_count)
@@ -93,6 +93,7 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
 
 
