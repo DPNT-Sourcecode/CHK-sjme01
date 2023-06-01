@@ -47,11 +47,10 @@ def calculate_item_price(item, count):
 
     if count >= 1 and item not in special_offers:
         return count * pricing_table[item]
-    if item in ["S","T","X","Y","Z"] and count >= 3:
+    if item in ["S", "T", "X", "Y", "Z"] and count >= 3:
         offer_multiplier = count // 3
         remaining_items = count % 3
-        price = offer_multiplier * 45 + remaining_items * pricing_table[item]
-
+        return offer_multiplier * 45 + remaining_items * pricing_table[item]
 
     if item in special_offers:
         if len(special_offers[item]) == 1:
@@ -114,7 +113,7 @@ def checkout(skus) -> int:
             elif item == "R" and item_count in range(3, 10) and len(skus) > 3:
                 discount = 30 if item_count == 3 or item_count == 4 else 60
                 price = calculate_item_price(item, item_count) - discount
-            elif item == "Q" and item_count in [2,3] and skus.count("R") in range(6, 11, 2):
+            elif item == "Q" and item_count in [2, 3] and skus.count("R") in range(6, 11, 2):
                 discount = 30
                 price = 2 * discount
             elif item == "Q" and item_count in [2, 3] and skus.count("R") == 3:
@@ -146,4 +145,5 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
