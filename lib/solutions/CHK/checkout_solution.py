@@ -91,7 +91,7 @@ def checkout(skus) -> int:
     if len(skus) == 0:
         return 0
 
-    if skus not in "ABCD":
+    if len(skus) == 1 and skus not in "ABCD":
         return -1
 
     if len(skus) > 1 and skus.isupper():
@@ -120,5 +120,6 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
 
