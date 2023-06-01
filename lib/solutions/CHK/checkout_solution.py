@@ -2,7 +2,7 @@
 class SupermarketCheckout:
     def __int__(self):
         self.pricing_table = {
-            'A': 50,
+            "A": 50,
             'B': 30,
             'C': 20,
             'D': 15
@@ -45,6 +45,7 @@ class SupermarketCheckout:
                 offer_multiplier = count // quantity
                 remaining_items = count % quantity
                 return offer_multiplier * offer_price + remaining_items
+
         return count * self.pricing_table[item]
 
 
@@ -88,6 +89,7 @@ def checkout(skus) -> int:
         total_price += 1
 
     return total_price
+
 
 
 
