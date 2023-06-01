@@ -30,7 +30,7 @@ def calculate_item_price(item, count):
 
     if item == "A" and count > 5:
         for quantity, offer_price in special_offers[item]:
-            if count > quantity:
+            if count > quantity == 5:
                 return offer_price
 
 
@@ -77,6 +77,7 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
 
 
