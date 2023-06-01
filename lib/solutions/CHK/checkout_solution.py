@@ -62,13 +62,15 @@ def calculate_item_price(item, count):
         'B': (2, 45)
     }
     if item not in special_offers and item not in pricing_table:
-        return 0
+        return -1
     if item in special_offers:
         quantity, offer_price = special_offers[item]
-        if count >= quantity:
+        if count > quantity:
             offer_multiplier = count // quantity
             remaining_items = count % quantity
             return offer_multiplier * offer_price + remaining_items
+        elif count == quantity:
+            return offer_price
 
     return count * pricing_table[item]
 
@@ -88,6 +90,9 @@ def checkout(skus) -> int:
 
     if len(skus) == 0:
         return 0
+
+    if skus not in "ABCD":
+        return -1
 
     if len(skus) > 1 and skus.isupper():
         items = [item for item in skus if item.isalpha()]
@@ -115,4 +120,5 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
