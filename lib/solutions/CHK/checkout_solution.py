@@ -28,9 +28,13 @@ def calculate_item_price(item, count):
             if item == "E" and offer_price.isalpha():
                 free_item = offer_price
                 return pricing_table[item] * count + pricing_table[free_item]
-            elif count > quantity:
-                offer_multiplier = count // quantity
-                remaining_items = count % quantity
+            elif count > quantity == 5 and item == "A":
+                offer_multiplier = count // quantity == 5
+                remaining_items = count % quantity == 5
+                return offer_multiplier * offer_price + remaining_items * pricing_table[item]
+            elif count > quantity == 3 and count < quantity == 5 and item == "A":
+                offer_multiplier = count // quantity == 3
+                remaining_items = count % quantity == 3
                 return offer_multiplier * offer_price + remaining_items * pricing_table[item]
             elif count == quantity == 3 and item == "A":
                 return offer_price
@@ -70,6 +74,7 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
 
 
