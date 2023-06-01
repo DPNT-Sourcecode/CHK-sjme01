@@ -109,9 +109,10 @@ def checkout(skus) -> int:
         item_name = skus
         item_count = 1
         price = calculate_item_price(item_name, item_count)
-        total_price += 1
+        total_price += price
 
     return total_price
+
 
 
 
