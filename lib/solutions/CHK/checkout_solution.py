@@ -23,6 +23,8 @@ def calculate_item_price(item, count):
     if count >= 1 and item not in special_offers:
         return count * pricing_table[item]
 
+
+
     if item == "A" and count == 5 or count == 3:
         for quantity, offer_price in special_offers[item]:
             if count == quantity:
@@ -37,10 +39,6 @@ def calculate_item_price(item, count):
                     return offer_multiplier * 200 + remaining_items * pricing_table[item]
                 elif remaining_items == 3:
                     return offer_multiplier * 200 + 130
-                elif 3 < remaining_items < 4:
-                    offer_multiplier2 = remaining_items // 3
-                    remaining_items2 = count % 3
-                    return offer_multiplier * 200 + offer_multiplier2 * 130 + remaining_items2 * pricing_table[item]
                 elif 3 < remaining_items < 5:
                     offer_multiplier2 = remaining_items // 3
                     remaining_items2 = count % 3
@@ -77,6 +75,7 @@ def calculate_item_price(item, count):
 def checkout(skus) -> int:
     total_price = 0
 
+
     if len(skus) == 0:
         return 0
 
@@ -86,6 +85,8 @@ def checkout(skus) -> int:
     if len(skus) > 1 and skus.isupper():
 
         items = set(skus)
+         if len(items)== 2 and :
+
         for item in items:
             item_count = skus.count(item)
             price = calculate_item_price(item, item_count)
@@ -98,5 +99,3 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
-
-
