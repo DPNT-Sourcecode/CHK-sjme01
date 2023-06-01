@@ -83,8 +83,8 @@ def checkout(skus) -> int:
                 discount = 30 if item_count == 2 or item_count == 3 else 45
                 price = calculate_item_price(item, item_count) - discount
             elif item == "B" and item_count in [2] and skus.count("E") == 2:
-                discount = 45
-                
+                discount = 30
+                price = 2 * discount
             else:
                 price = calculate_item_price(item, item_count)
             total_price += price
@@ -96,4 +96,5 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
