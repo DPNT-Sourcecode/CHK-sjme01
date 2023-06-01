@@ -36,4 +36,3 @@
 #                 remaining_items = count % quantity
 #                 return offer_multiplier * offer_price + remaining_items
 #         return count * self.pricing_table[item]
-
