@@ -4,7 +4,8 @@ def calculate_item_price(item, count):
         'B': 30,
         'C': 20,
         'D': 15,
-        'E': 40
+        'E': 40,
+        'F': 10
 
     }
 
@@ -71,7 +72,7 @@ def checkout(skus) -> int:
     if len(skus) == 0:
         return 0
 
-    if len(skus) == 1 and skus not in "ABCDE":
+    if len(skus) == 1 and skus not in "ABCDEF":
         return -1
 
     if len(skus) > 1 and skus.isupper():
@@ -85,6 +86,9 @@ def checkout(skus) -> int:
             elif item == "B" and item_count in [2] and skus.count("E") == 2:
                 discount = 30
                 price = 2 * discount
+            elif item == "F" and item_count in [3]:
+                discount = 10
+                price = calculate_item_price(item, item_count) - discount
             else:
                 price = calculate_item_price(item, item_count)
             total_price += price
@@ -96,3 +100,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
