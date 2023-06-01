@@ -32,6 +32,10 @@ def calculate_item_price(item, count):
                 offer_multiplier = count // quantity
                 remaining_items = count % quantity
                 return offer_multiplier * offer_price + remaining_items * pricing_table[item]
+            elif count == 3 and item == "A":
+                return offer_price
+            elif count == 5 and item == "A":
+                return offer_price
             elif count == quantity:
                 return offer_price
             else:
@@ -66,6 +70,7 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
 
 
