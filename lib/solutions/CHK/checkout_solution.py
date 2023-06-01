@@ -71,6 +71,11 @@ def checkout(skus) -> int:
             item_name = "D"
             price = calculate_item_price(item_name, item_count)
             total_price += price
+        if "E" in skus:
+            item_count = skus.count("E")
+            item_name = "E"
+            price = calculate_item_price(item_name, item_count)
+            total_price += price
     elif len(skus) == 1:
         item_name = skus
         item_count = 1
@@ -80,3 +85,4 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
