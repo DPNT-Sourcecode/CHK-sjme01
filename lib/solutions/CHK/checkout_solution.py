@@ -47,33 +47,6 @@ def calculate_item_price(item, count):
 
     if count >= 1 and item not in special_offers:
         return count * pricing_table[item]
-    if count == 1 and item in special_offers:
-        return count * pricing_table[item]
-
-    # if item == "A" and count == 5 or count == 3:
-    #     for quantity, offer_price in special_offers[item]:
-    #         if count == quantity:
-    #             return offer_price
-    #
-    # if item == "A" and count > 5:
-    #     if count > 5:
-    #         offer_multiplier = count // 5
-    #         remaining_items = count % 5
-    #         if remaining_items < 3:
-    #             return offer_multiplier * 200 + remaining_items * pricing_table["A"]
-    #         elif remaining_items == 3:
-    #             return offer_multiplier * 200 + 130
-    #         elif remaining_items == 4:
-    #             offer_multiplier2 = remaining_items // 3
-    #             remaining_items2 = remaining_items % 3
-    #             return offer_multiplier * 200 + offer_multiplier2 * 130 + remaining_items2 * pricing_table["A"]
-    #
-    # if item == "A" and 3 < count < 4:
-    #     for quantity, offer_price in special_offers[item]:
-    #         if count > quantity == 3:
-    #             offer_multiplier = count // 3
-    #             remaining_items = count % 3
-    #             return offer_multiplier * 130 + remaining_items * pricing_table[item]
 
     if item in special_offers:
         if len(special_offers[item]) == 1:
@@ -139,6 +112,9 @@ def checkout(skus) -> int:
             elif item == "F" and item_count in [3, 4, 5, 6]:
                 discount = 10 if item_count in [3, 4] else 20
                 price = calculate_item_price(item, item_count) - discount
+            elif item == "U" and item_count in [3, 4, 5, 6, 7, 8, 9]:
+                discount = 40 if item_count in [3, 4] else 80
+                price = calculate_item_price(item, item_count) - discount
             else:
                 price = calculate_item_price(item, item_count)
             total_price += price
@@ -150,5 +126,6 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
 
