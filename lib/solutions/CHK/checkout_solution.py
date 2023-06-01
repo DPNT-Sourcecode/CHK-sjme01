@@ -75,6 +75,9 @@ def calculate_item_price(item, count):
     return count * pricing_table[item]
 
 
+calculate_item_price("A", 3)
+
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus) -> int:
@@ -95,8 +98,6 @@ def checkout(skus) -> int:
         return -1
 
     if len(skus) > 1 and skus.isupper():
-        items = [item for item in skus if item.isalpha()]
-
         if "A" in skus:
             item_count = skus.count("A")
             item_name = "A"
@@ -117,12 +118,6 @@ def checkout(skus) -> int:
             item_name = "D"
             price = calculate_item_price(item_name, item_count)
             total_price += price
-
-
-
-
-
-
 
         # for item in items:
         #     if len(item) > 1:
@@ -148,4 +143,5 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
