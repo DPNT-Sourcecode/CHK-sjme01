@@ -58,7 +58,7 @@ def calculate_item_price(item, count):
     }
 
     special_offers = {
-        'A': (3, 150),
+        'A': (3, 130),
         'B': (2, 45)
     }
     if item not in special_offers and item not in pricing_table:
@@ -138,3 +138,4 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
