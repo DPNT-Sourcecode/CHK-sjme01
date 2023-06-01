@@ -89,7 +89,7 @@ def checkout(skus) -> int:
         return -1
 
     if len(skus) > 1:
-        items = skus.split(",")
+        items = [item for item in skus if item.isalpha()]
         for item in items:
             if len(item) > 1:
                 item = item.strip()
@@ -112,6 +112,7 @@ def checkout(skus) -> int:
         total_price += 1
 
     return total_price
+
 
 
 
