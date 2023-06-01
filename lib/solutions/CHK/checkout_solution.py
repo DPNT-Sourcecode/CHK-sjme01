@@ -23,29 +23,25 @@ def calculate_item_price(item, count):
     if count >= 1 and item not in special_offers:
         return count * pricing_table[item]
 
-    if item == "A" and count == 5:
+    if item == "A" and count == 5 or count == 3:
         for quantity, offer_price in special_offers[item]:
-            return 
+            if count == quantity:
+                return offer_price
 
     if item in special_offers:
         for quantity, offer_price in special_offers[item]:
             if item == "E" and offer_price.isalpha():
                 free_item = offer_price
                 return pricing_table[item] * count + pricing_table[free_item]
-            elif count > quantity == 5 and item == "A":
-                offer_multiplier = count // quantity == 5
-                remaining_items = count % quantity == 5
+            elif count > quantity:
+                offer_multiplier = count // quantity
+                remaining_items = count % quantity
                 return offer_multiplier * offer_price + remaining_items * pricing_table[item]
-            elif count > quantity == 3 and count < quantity == 5 and item == "A":
-                offer_multiplier = count // quantity == 3
-                remaining_items = count % quantity == 3
-                return offer_multiplier * offer_price + remaining_items * pricing_table[item]
-            elif count == quantity == 3 and item == "A":
-                return offer_price
-            elif count == quantity == 5 and item == "A":
-                return offer_price
             elif count == quantity:
                 return offer_price
+            else:
+                return count * pricing_table[item]
+
     return count * pricing_table[item]
 
 
@@ -75,4 +71,5 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
 
