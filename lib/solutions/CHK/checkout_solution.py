@@ -50,31 +50,10 @@ def checkout(skus) -> int:
 
     if len(skus) > 1 and skus.isupper():
 
-        if "A" in skus:
-            item_count = skus.count("A")
-            item_name = "A"
-            price = calculate_item_price(item_name, item_count)
-            total_price += price
-
-        if "B" in skus:
-            item_count = skus.count("B")
-            item_name = "B"
-            price = calculate_item_price(item_name, item_count)
-            total_price += price
-        if "C" in skus:
-            item_count = skus.count("C")
-            item_name = "C"
-            price = calculate_item_price(item_name, item_count)
-            total_price += price
-        if "D" in skus:
-            item_count = skus.count("D")
-            item_name = "D"
-            price = calculate_item_price(item_name, item_count)
-            total_price += price
-        if "E" in skus:
-            item_count = skus.count("E")
-            item_name = "E"
-            price = calculate_item_price(item_name, item_count)
+        items = set(skus)
+        for item in items:
+            item_count = skus.count(item)
+            price = calculate_item_price(item, item_count)
             total_price += price
     elif len(skus) == 1:
         item_name = skus
@@ -85,4 +64,5 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
