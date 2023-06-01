@@ -1,4 +1,3 @@
-
 # class SupermarketCheckout:
 #     def __int__(self):
 #         self.pricing_table = {
@@ -49,7 +48,8 @@
 #         return count * self.pricing_table[item]
 
 
-def calculate_item_price( item, count):
+def calculate_item_price(item, count):
+    item = item.upper()
     pricing_table = {
         "A": 50,
         'B': 30,
@@ -70,7 +70,6 @@ def calculate_item_price( item, count):
             return offer_multiplier * offer_price + remaining_items
 
     return count * pricing_table[item]
-
 
 
 # noinspection PyUnusedLocal
