@@ -96,21 +96,23 @@ def checkout(skus) -> int:
 
     if len(skus) > 1 and skus.isupper():
         items = [item for item in skus if item.isalpha()]
-        for item in items:
-            if len(item) > 1:
-                item = item.strip()
-                item_name = item[-1]
-                item_count = int(item[:-1])
-            else:
-                item_name = item
-                item_count = 1
 
-            price = calculate_item_price(item_name, item_count)
-
-            if price == -1:
-                print("Invalid input")
-                break
-            total_price += price
+        total_price = sum(calculate_item_price(item, skus.count(item)) for item in skus if item.isalpha())
+        # for item in items:
+        #     if len(item) > 1:
+        #         item = item.strip()
+        #         item_name = item[-1]
+        #         item_count = int(item[:-1])
+        #     else:
+        #         item_name = item
+        #         item_count = 1
+        #
+        #     price = calculate_item_price(item_name, item_count)
+        #
+        #     if price == -1:
+        #         print("Invalid input")
+        #         break
+        #     total_price += price
     elif len(skus) == 1:
         item_name = skus
         item_count = 1
@@ -120,6 +122,7 @@ def checkout(skus) -> int:
         return -1
 
     return total_price
+
 
 
 
