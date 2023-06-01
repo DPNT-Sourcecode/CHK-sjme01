@@ -14,7 +14,7 @@ def checkout(skus) -> int:
     supercheckout.set_special_offer('A', 3, 130)
     supercheckout.set_special_offer('B', 2, 45)
 
-    if not skus:
+    if len(skus) == 0:
         return -1
 
     total_price = 0
@@ -35,7 +35,3 @@ def checkout(skus) -> int:
             break
         total_price += price
     return total_price
-
-
-
-
