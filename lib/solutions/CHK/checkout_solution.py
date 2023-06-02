@@ -142,6 +142,9 @@ def checkout(skus) -> int:
                     price = calculate_item_price(item, item_count)
                 else:
                     price = 45
+            # elif item in ["S", "T", "X", "Y", "Z"] and len(set(skus)) == 3 and len(skus) == 4:
+            #     if item_count == 2 and item == "S":
+
 
 
             # elif item in ["S", "T", "X", "Y", "Z"] and len(set(skus)) == 1:
@@ -172,6 +175,3 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
-
-
-
