@@ -165,12 +165,11 @@ def checkout(skus) -> int:
         item_count = 1
         price = calculate_item_price(item_name, item_count)
         total_price += price
-
-    if len(set(skus)) > 7 and len(skus) > 24:
-        return  total_price + 2
-
     else:
         return -1
+    if len(set(skus)) > 7 and len(skus) > 24:
+        return  total_price + 2
     return total_price
+
 
 
