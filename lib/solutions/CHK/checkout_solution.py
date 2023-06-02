@@ -137,7 +137,7 @@ def checkout(skus) -> int:
                 price = 2 * discount
             elif item in ["S", "T", "X", "Y", "Z"] and item_count == skus.count("T") == skus.count("X") == skus.count(
                     "Y") == skus.count("Z") == skus.count("S") and len(skus) >= 3:
-                price = item_count * 15
+                price = 1 * 15
             elif item in ["S", "T", "X", "Y", "Z"] and item_count != skus.count("T") == skus.count("X") == skus.count(
                     "Y") == skus.count("Z") == skus.count("S") and len(skus) >= 3:
                 if item == "S" and item_count != skus.count("T") == skus.count("X") == skus.count(
@@ -155,3 +155,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
