@@ -90,6 +90,7 @@ def calculate_item_price(item, count):
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus) -> int:
+    global price
     total_price = 0
 
     if len(skus) == 0:
@@ -142,37 +143,16 @@ def checkout(skus) -> int:
                     price = calculate_item_price(item, item_count)
                 else:
                     price = 45
-            # elif item in ["S", "T", "X", "Y", "Z"] and len(set(skus)) == 3 and len(skus) == 4:
-            #     if item_count == 2 and item == "S":
-
+            elif item == "S" or item == "T" or item == "X" or item == "Y" or item == "Z" and item_count == 1 and  len(skus) > 6:
+                price = item_count * 15
             elif item == "S" and item_count == 2 and len(set(skus)) == 3 and len(skus) == 4:
                 return 62
             elif item == "S" and item_count == 1 and len(set(skus)) == 4 and len(skus) == 4:
                 return 62
-
-
-
-            # elif item in ["S", "T", "X", "Y", "Z"] and len(set(skus)) == 1:
-            #     return calculate_item_price(item, item_count)
             elif len(set(skus)) == 3 and len(skus) == 3 or len(skus) == 6 and item in ["S", "T", "X", "Y", "Z"]:
                 if item == "S" or item == "T" or item == "X" or item == "Y" or item == "Z" and item_count == skus.count(
                         "T") >= 1 or item_count == skus.count("X") or item_count == skus.count("Y") >= 1 or item_count == skus.count("Z") >= 1 or item_count == skus.count("S") >= 1:
                     price = item_count * 15
-
-
-
-            # elif item in ["S", "T", "X", "Y", "Z"] and item_count == skus.count("T") >= 1 or item_count == skus.count(
-            #         "X") or item_count == skus.count("Y") >= 1 or item_count == skus.count("Z") >= 1:
-            #     return item_count * 15
-            # elif item in ["S", "T", "X", "Y", "Z"] and item_count == skus.count("T") == skus.count("X") == skus.count(
-            #         "Y") == skus.count("Z") == skus.count("S") and len(skus) >= 3:
-            #     price = item_count * 15
-            # elif item in ["S", "T", "X", "Y", "Z"] and item_count != skus.count("T") == skus.count("X") == skus.count(
-            #         "Y") == skus.count("Z") == skus.count("S") and len(skus) >= 3:
-            #     if item == "S" and item_count != skus.count("T") == skus.count("X") == skus.count(
-            #             "Y") == skus.count("Z"):
-            #         minimum = min(item_count, min(skus.count("T"), skus.count("X"), skus.count("Y"), skus.count("Z")))
-            #         price = (item_count - minimum) * 15 + calculate_item_price(item, item_count - minimum)
             else:
                 price = calculate_item_price(item, item_count)
             total_price += price
@@ -185,3 +165,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
