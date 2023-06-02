@@ -167,9 +167,10 @@ def checkout(skus) -> int:
         total_price += price
     else:
         return -1
-    if len(set(skus)) > 7 and len(skus) > 24:
+    if len(set(skus)) > 7 and len(skus)  == 52:
         return  total_price + 2
     return total_price
+
 
 
 
