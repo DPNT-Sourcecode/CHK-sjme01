@@ -133,13 +133,8 @@ def checkout(skus) -> int:
                 price = 2 * discount
             elif item in ["S", "T", "X", "Y", "Z"] and items == 1:
                 return item_count * 15
-            elif item == "S" and items == 2:
+            elif item in ["S", "T", "X", "Y", "Z"] and items == 2:
                 if item_count == 3:
-                    price = calculate_item_price(item, 1)
-                else:
-                    price = 45
-            elif item == "Z" and items == 2:
-                if item_count == 1:
                     price = calculate_item_price(item, 1)
                 else:
                     price = 45
@@ -173,3 +168,4 @@ def checkout(skus) -> int:
     else:
         return -1
     return total_price
+
